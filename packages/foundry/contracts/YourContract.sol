@@ -93,6 +93,9 @@ contract YourContract is
     Ownable,
     ERC20Permit
 {
+    uint256 public totalValueLocked;
+    uint256 public activeInvestmentsCount;
+
     constructor(
         address initialOwner
     )
@@ -101,6 +104,23 @@ contract YourContract is
         ERC20Permit("WorldCapital")
     {}
 
+    receive() external payable {
+        totalValueLocked += msg.value;
+        activeInvestmentsCount++;
+    }
+
+    function withdraw(uint256 amount) external onlyOwner {
+        require(amount <= totalValueLocked, "Insufficient TVL");
+        totalValueLocked -= amount;
+        (bool success, ) = owner().call{value: amount}("");
+        require(success, "Withdraw failed");
+    }
+
+    function getActiveInvestmentsCount() external view returns (uint256) {
+        return activeInvestmentsCount;
+    }
+
+    // Existing ERC20 functions below...
     function pause() public onlyOwner {
         _pause();
     }
@@ -113,8 +133,7 @@ contract YourContract is
         _mint(to, amount);
     }
 
-    // The following functions are overrides required by Solidity.
-
+    // Required overrides
     function _update(
         address from,
         address to,

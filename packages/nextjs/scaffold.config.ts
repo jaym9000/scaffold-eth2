@@ -34,4 +34,15 @@ const scaffoldConfig = {
   onlyLocalBurnerWallet: true,
 } as const satisfies ScaffoldConfig;
 
+const contracts = {
+  YourContract: {
+    address: {
+      [chains.foundry.id]: "0x...", // Your deployed address
+    },
+    abi: [...], // Generated ABI
+    contractName: "YourContract",
+    chainId: chains.foundry.id,
+  },
+};
+
 export default scaffoldConfig;

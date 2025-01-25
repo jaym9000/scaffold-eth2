@@ -21,6 +21,10 @@ const deployedContracts = {
           stateMutability: "nonpayable",
         },
         {
+          type: "receive",
+          stateMutability: "payable",
+        },
+        {
           type: "function",
           name: "DOMAIN_SEPARATOR",
           inputs: [],
@@ -29,6 +33,19 @@ const deployedContracts = {
               name: "",
               type: "bytes32",
               internalType: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "activeInvestmentsCount",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           stateMutability: "view",
@@ -183,6 +200,19 @@ const deployedContracts = {
               name: "extensions",
               type: "uint256[]",
               internalType: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getActiveInvestmentsCount",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           stateMutability: "view",
@@ -348,6 +378,19 @@ const deployedContracts = {
         },
         {
           type: "function",
+          name: "totalValueLocked",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
           name: "transfer",
           inputs: [
             {
@@ -416,6 +459,19 @@ const deployedContracts = {
           type: "function",
           name: "unpause",
           inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "withdraw",
+          inputs: [
+            {
+              name: "amount",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
           outputs: [],
           stateMutability: "nonpayable",
         },
@@ -726,7 +782,7 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {},
-      deploymentFile: "run-1737771134.json",
+      deploymentFile: "run-1737837677.json",
       deploymentScript: "Deploy.s.sol",
     },
   },
